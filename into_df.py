@@ -37,7 +37,7 @@ def get_match_csv(active_match_url: str) -> "csv":
             csv_writer.writerow([odds[i], book[i], team_list[i]])
         csv_file.close()
     except:
-    print("error converting match table to csv")
+        print("error converting match table to csv")
 
    
     
