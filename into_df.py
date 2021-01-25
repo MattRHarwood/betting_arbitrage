@@ -25,7 +25,7 @@ def get_match_csv(active_match_url: str) -> "csv":
     odds = []
     book = []
     team_list = []
-    for i in range(0,3):
+    for i in range(0,len(odd_rows)):
         for entry in odd_rows[i].find_all("td", {"class": ["bc bs o", "bc bs oi", "bc bs b", "bc bs oo"]}):
             odds.append(entry["data-odig"])
             book.append(entry["data-bk"])
@@ -47,7 +47,7 @@ def get_match_df(active_match_url: str) -> pd.DataFrame:
     odds = []
     book = []
     team_list = []
-    for i in range(0,3):
+    for i in range(0,len(odd_rows)):
         for entry in odd_rows[i].find_all("td", {"class": ["bc bs o", "bc bs oi", "bc bs b", "bc bs oo"]}):
             odds.append(entry["data-odig"])
             book.append(entry["data-bk"])
@@ -55,6 +55,10 @@ def get_match_df(active_match_url: str) -> pd.DataFrame:
 
     df = pd.DataFrame(list(zip(odds, book, team_list)), columns =['Dec_Odds', 'Book', 'Result'])
     return df
+
+matches = get_epl_match_urls()
+
+get_match_csv("https://www.oddschecker.com/ufc-mma/conor-mcgregor-v-dustin-poirier/winner")
 
 
 
